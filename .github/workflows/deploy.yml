@@ -22,17 +22,19 @@ jobs:
         with:
           node-version: '16.14' # or any other version you prefer
 
-      - name: Install PNPM
-        run: npm install -g pnpm
-
       - name: Set PNPM Configuration
-        run: echo "settings.autoInstallPeers=true" >> .npmrc
+        run: echo "settings.autoInstallPeers=true" > .npmrc
 
       - name: Install dependencies with no frozen lockfile (for debugging)
         run: pnpm install --no-frozen-lockfile
 
       - name: Install, build, and upload your site
         uses: withastro/action@v0
+        with:
+          path: .
+          node-version: 16
+          pnpm-version: 7.x.x
+          resolve-dep-from-path: true
 
   deploy:
     needs: build
@@ -44,3 +46,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+
