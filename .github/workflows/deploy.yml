@@ -20,7 +20,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16.14' # or any other version you prefer
+          node-version: '16.14'
+
+      - name: Install PNPM
+        run: npm install -g pnpm
 
       - name: Set PNPM Configuration
         run: echo "settings.autoInstallPeers=true" > .npmrc
@@ -30,11 +33,6 @@ jobs:
 
       - name: Install, build, and upload your site
         uses: withastro/action@v0
-        with:
-          path: .
-          node-version: 16
-          pnpm-version: 7.x.x
-          resolve-dep-from-path: true
 
   deploy:
     needs: build
@@ -46,4 +44,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-
