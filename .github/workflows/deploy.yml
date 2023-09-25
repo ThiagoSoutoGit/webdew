@@ -25,11 +25,8 @@ jobs:
       - name: Install PNPM
         run: npm install -g pnpm
 
-      - name: Set PNPM Configuration
-        run: echo "settings.autoInstallPeers=true" > .npmrc
-
-      - name: Install dependencies with no frozen lockfile (for debugging)
-        run: pnpm install --no-frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Install, build, and upload your site
         uses: withastro/action@v0
