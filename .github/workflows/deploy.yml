@@ -17,8 +17,13 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v3
 
-      - name: Set PNPM Configuration
-        run: echo "settings.autoInstallPeers=true" >> .npmrc
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16' # or any other version you prefer
+
+      - name: Install PNPM
+        run: npm install -g pnpm
 
       - name: Install dependencies with no frozen lockfile (for debugging)
         run: pnpm install --no-frozen-lockfile
