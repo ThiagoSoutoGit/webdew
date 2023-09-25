@@ -12,6 +12,20 @@ export default defineConfig({
 			},
 			sidebar: [
 				{
+					label: 'Frontend',
+					items: [
+						// Each item here is one entry in the navigation menu.
+						{ label: 'Astro', link: '/frontend/astro/' },
+					],
+				},
+				{
+					label: 'Backend',
+					items: [
+						// Each item here is one entry in the navigation menu.
+						{ label: 'Nest', link: '/backend/nest/' },
+					],
+				},
+				{
 					label: 'Guides',
 					items: [
 						// Each item here is one entry in the navigation menu.
