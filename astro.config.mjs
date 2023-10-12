@@ -23,6 +23,7 @@ export default defineConfig({
 					items: [
 						// Each item here is one entry in the navigation menu.
 						{ label: 'Nest', link: '/backend/nest/' },
+						{ label: 'Actix', link: '/backend/actix/' },
 					],
 				},
 				{

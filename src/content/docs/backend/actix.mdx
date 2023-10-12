@@ -1,0 +1,116 @@
+---
+title: Rust backend development
+description: A guide to Actix-web.
+---
+
+## First actix.rs backend
+
+[Install rust](https://www.rust-lang.org/tools/install)
+
+```
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+```
+cargo new new-project
+
+cargo run
+```
+
+[Actix documentation](https://actix.rs/docs/getting-started/)
+
+main.rs
+```
+use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
+
+#[get("/")]
+async fn hello() -> impl Responder {
+    HttpResponse::Ok().body("Hello world!")
+}
+
+#[get("/hello2")]
+async fn hello2() -> impl Responder {
+    HttpResponse::Ok().body("Hello 2")
+}
+
+#[post("/echo")]
+async fn echo(req_body: String) -> impl Responder {
+    HttpResponse::Ok().body(req_body)
+}
+
+async fn hello3() -> impl Responder {
+    HttpResponse::Ok().body("Hello 3")
+}
+
+async fn manual_hello() -> impl Responder {
+    HttpResponse::Ok().body("Hey there!")
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    HttpServer::new(|| {
+        App::new()
+            .service(hello)
+            .service(hello2)
+            .service(echo)
+            .route("/hey", web::get().to(manual_hello))
+            .route("/hello3", web::get().to(hello3))
+    })
+    .bind(("127.0.0.1", 8080))?
+    .run()
+    .await
+}
+```
+
+## Actix + JWT + MongoDb
+
+
+
+Cargo.toml for a Rust project named actix-web-jwt-example which appears to be a web application possibly with JWT (JSON Web Token) authentication using the Actix web framework.
+
+```
+[package]
+name = "actix-web-jwt-example"
+version = "0.1.0"
+authors = ["emreyalvac <emre.stress@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-web = "3.0.0-alpha.1"
+actix-rt = "1.0.0"
+mongodb = "0.9.2"
+bson = "0.14.1"
+lazy_static = "1.4.0"
+serde = "1.0.105"
+serde_json = "1.0.48"
+jsonwebtoken = "7.1.0"
+envfile = "0.2.1"
+chrono = "0.4.11"
+rust-crypto = "0.2.36"
+uuid = { version = "0.8", features = ["serde", "v4"] }
+futures = "0.3.4"
+```
+
+Let's discuss your dependencies:
+
+Actix-Web & Actix-RT: You're using the alpha version of Actix-Web 3, which is quite dated now. Actix-Web has had several updates since. If you're not depending on specific features of this alpha version, I'd recommend updating to a stable version.
+
+MongoDB & BSON: These are for interacting with a MongoDB database.
+
+Lazy Static: Allows you to create lazily evaluated statics in Rust.
+
+Serde & Serde JSON: Serde is a framework for serializing and deserializing data. In this context, you're likely using it for JSON handling (hence, the inclusion of serde_json).
+
+JSON Web Token: This crate is for encoding and decoding JWTs, probably used for authentication in your web application.
+
+Envfile: Helps with reading .env files, likely for configuration.
+
+Chrono: A date and time library for Rust.
+
+Rust-Crypto: A cryptography library. However, I'd advise caution with using rust-crypto as it is no longer maintained. Consider switching to the ring crate or another actively maintained crypto library.
+
+UUID: A library to create and parse universally unique identifiers, with specific features for serialization and version 4 UUIDs.
+
+Futures: Provides the foundational building blocks for asynchronous programming in Rust.
