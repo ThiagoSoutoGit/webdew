@@ -30,7 +30,17 @@ export default defineConfig({
 					label: 'Guides',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', link: '/guides/example/' },
+						{ label: 'Rust Programming language', link: '/guides/rust/' },
+						{ label: 'C++', link: '/guides/cpp/' },
+
+					],
+				},
+				{
+					label: 'Challenges',
+					items: [
+						// Each item here is one entry in the navigation menu.
+						{ label: 'Cpp 16 games', link: '/challenges/cpp-games/' },
+						{ label: 'Rust 16 games', link: '/challenges/rust-games/' },
 					],
 				},
 				{

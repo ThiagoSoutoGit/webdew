@@ -15,3 +15,95 @@ nest start
 ```
 
 
+
+:::tip
+```
+thiagosouto@Thiagos-MacBook-Pro poetry-app % sudo npm cache clean --force
+npm WARN using --force Recommended protections disabled.
+thiagosouto@Thiagos-MacBook-Pro poetry-app % npm i --force
+npm WARN using --force Recommended protections disabled.
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /Users/thiagosouto/dev/poetry-app/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/Users/thiagosouto/dev/poetry-app/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent
+
+npm ERR! A complete log of this run can be found in: /Users/thiagosouto/.npm/_logs/2023-10-16T09_18_44_161Z-debug-0.log
+```
+
+Cause: Happened because of the sudo on npm
+
+Solved like this:
+
+```sudo npm cache clean --force```
+
+:::
+
+
+## Database
+
+Open docker
+Open Containers
+Search for mongo and use Volumes `/Users/thiagosouto/dev/mongodata` and container path `/data`.
+Container name `mongo` for general.
+host port 27017
+If you don't map volumes the data don't persist.
+
+MONGO_INITDB_ROOT_USERNAME
+admin
+MONGO_INITDB_ROOT_PASSWORD
+test123
+
+```
+2023-10-16 22:45:43 {"t":{"$date":"2023-10-16T09:45:43.223+00:00"},"s":"I",  "c":"STORAGE",  "id":22262,   "ctx":"initandlisten","msg":"Timestamp monitor starting"}
+2023-10-16 22:45:43 {"t":{"$date":"2023-10-16T09:45:43.224+00:00"},"s":"I",  "c":"NETWORK",  "id":23015,   "ctx":"listener","msg":"Listening on","attr":{"address":"/tmp/mongodb-27017.sock"}}
+2023-10-16 22:45:43 {"t":{"$date":"2023-10-16T09:45:43.224+00:00"},"s":"I",  "c":"NETWORK",  "id":23015,   "ctx":"listener","msg":"Listening on","attr":{"address":"0.0.0.0"}}
+2023-10-16 22:45:43 {"t":{"$date":"2023-10-16T09:45:43.224+00:00"},"s":"I",  "c":"NETWORK",  "id":23016,   "ctx":"listener","msg":"Waiting for connections","attr":{"port":27017,"ssl":"off"}}
+```
+
+
+![Mongo Docker](../resources/backend/nest/01-docker.png)
+
+
+
+Waiting for connections `all good`
+
+
+## Mongoose
+
+https://docs.nestjs.com/recipes/mongodb
+
+
+Create a new string for the database:
+
+```ts
+import * as mongoose from 'mongoose';
+
+export const databaseProviders = [
+    {
+        provide: 'DATABASE_CONNECTION',
+        useFactory: (): Promise<typeof mongoose> =>
+mongoose.connect('mongodb://localhost::27017'),
+},
+];
+```
+Here is a ChatGPT generated one
+
+`mongodb://admin:test123@localhost:27017/`
+
+
+```
+import * as mongoose from 'mongoose';
+
+export const databaseProviders = [
+    {
+        provide: 'DATABASE_CONNECTION',
+        useFactory: (): Promise<typeof mongoose> =>
+            mongoose.connect('mongodb://admin:test123@localhost:27017/poetry-app'),
+    },
+];
+```
+
+
