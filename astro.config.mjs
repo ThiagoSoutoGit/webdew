@@ -4,7 +4,6 @@ import starlight from '@astrojs/starlight';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://thiagosoutogit.github.io',
-	base: '/webdew',
 	integrations: [
 		starlight({
 			title: 'Web Dewelopment',
