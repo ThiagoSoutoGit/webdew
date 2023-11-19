@@ -22,11 +22,8 @@ jobs:
         with:
           node-version: '16.14'
 
-      - name: Install PNPM
-        run: npm install -g pnpm
-
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       - name: Install, build, and upload your site
         uses: withastro/action@v0
