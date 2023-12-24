@@ -16,23 +16,23 @@ export default defineConfig({
 					label: 'Frontend',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Astro', link: '/frontend/astro/' },
+						{ label: 'Astro', link: '/webdew/frontend/astro/' },
 					],
 				},
 				{
 					label: 'Backend',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Nest', link: '/backend/nest/' },
-						{ label: 'Actix', link: '/backend/actix/' },
+						{ label: 'Nest', link: '/webdew/backend/nest/' },
+						{ label: 'Actix', link: '/webdew/backend/actix/' },
 					],
 				},
 				{
 					label: 'Guides',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Rust Programming language', link: '/guides/rust/' },
-						{ label: 'C++', link: '/guides/cpp/' },
+						{ label: 'Rust Programming language', link: '/webdew/guides/rust/' },
+						{ label: 'C++', link: '/webdew/guides/cpp/' },
 
 					],
 				},
@@ -40,8 +40,8 @@ export default defineConfig({
 					label: 'Challenges',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Cpp 16 games', link: '/challenges/cpp-games/' },
-						{ label: 'Rust 16 games', link: '/challenges/rust-games/' },
+						{ label: 'Cpp 16 games', link: '/webdew/challenges/cpp-games/' },
+						{ label: 'Rust 16 games', link: '/webdew/challenges/rust-games/' },
 					],
 				},
 				{
