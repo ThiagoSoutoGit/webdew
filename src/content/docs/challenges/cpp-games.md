@@ -148,7 +148,7 @@ int figures[7][4] =
         };
 ```
 
-![tetris](../../../assets/challenges/cpp-games/tetris-02.png)
+![tetris](../../../assets/challenges/cpp-games/tetris-03.png)
 
 
 Then we create an `struct Point`
@@ -174,6 +174,71 @@ for (int i = 0; i < 4; ++i) {
 }
 ```
 
+
+:::tip
+`%` gives you the remainder of integer division.
+
+`a[0].x = figures[0][0] % 2;` ----->  `1%2` is 1 because 1 divided by 2 is 0 remainder 1.
+
+`1/2` gives 0 as output because they are int by default.
+
+
+1,3,5,7,    // I
+
+2,4,5,7,    // Z
+
+For n=0
+
+a[i].x: 1 a[i].y: 0
+
+a[i].x: 1 a[i].y: 1
+
+a[i].x: 1 a[i].y: 2
+
+a[i].x: 1 a[i].y: 3
+
+For n=1
+
+a[i].x: 0 a[i].y: 1
+
+a[i].x: 0 a[i].y: 2
+
+a[i].x: 1 a[i].y: 2
+
+a[i].x: 1 a[i].y: 3
+
+
+*18
+
+a[i].x: 0 a[i].y: 1 a[i].x*18: 0 a[i].y*18: 18                X
+
+a[i].x: 0 a[i].y: 2 a[i].x*18: 0 a[i].y*18: 36                XX
+
+a[i].x: 1 a[i].y: 2 a[i].x*18: 18 a[i].y*18: 36                X
+
+a[i].x: 1 a[i].y: 3 a[i].x*18: 18 a[i].y*18: 54
+
+
+![tetris](../../../assets/challenges/cpp-games/tetris-04.png)
+
+This part of the Tetris code is crucial for defining the shape and orientation of the Tetris pieces. Let's break it down:
+
+```cpp
+for (int i = 0; i < 4; ++i) {
+    a[i].x = figures[n][i] % 2;
+    a[i].y = figures[n][i] / 2;
+}
+```
+
+
+- **2x4 Grid Representation**: Here, each Tetris piece is defined by four blocks (`i` ranging from 0 to 3), and the position of each block is calculated using the `figures[n][i]` values. The use of modulo 2 (`% 2`) and integer division by 2 (`/ 2`) suggests a grid with 2 columns (x-coordinates 0 or 1) and 4 rows (y-coordinates 0 to 3).
+
+- **Modulo 2 for x-coordinate**: The `a[i].x = figures[n][i] % 2;` line assigns the x-coordinate of each block within a width of 2 columns.
+
+- **Division by 2 for y-coordinate**: The `a[i].y = figures[n][i] / 2;` line calculates the y-coordinate, effectively distributing the block positions over 4 rows.
+
+This structure allows each piece's shape and orientation to be encoded using the `figures` array. The specific values in this array determine how the blocks are positioned in the 2x4 grid to form the different Tetris pieces. For example, the 'I' piece would be represented with all blocks in a straight line, either horizontally or vertically, within this grid.
+:::
 
 now we create
 
