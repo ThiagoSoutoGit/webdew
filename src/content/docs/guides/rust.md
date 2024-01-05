@@ -5,13 +5,15 @@ description: A guide to Rust.
 
 ## 1 - Introduction
 
+Udemy-The Complete Rust Programming Course
+
 Important commands:
 
 | Command               | action                                                   |
 |-----------------------|----------------------------------------------------------|
 | cargo new new_project | create new rust project with a main.rs in the src folder |
 | rustc main.rs         | compile and create an exe file                           |
-|                       |                                                          |
+| cargo build           | compile and create an exe file                           |
 |                       |                                                          |
 |                       |                                                          |
 
@@ -20,6 +22,10 @@ Important commands:
 cargo new project_name
 
 rustc main.rs
+
+
+
+## 5 - Variables and mutability
 
 
 ## 18 - Patterns and match making
